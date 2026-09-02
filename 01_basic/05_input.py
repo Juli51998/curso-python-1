@@ -3,8 +3,15 @@
 # La función input() permite obtener datos del usuario a través de la consola.
 ###
 
-from os import system
-if system("clear") != 0: system("cls")
+# La función "system" está obsoleta y no se recomienda utilizar.
+# from os import system
+# if system("clear") != 0: system("cls")
+
+import subprocess
+import os
+
+consola = 'cls' if os.name == 'nt' else 'clear'
+subprocess.call(consola, shell=True)
 
 # Para obtener datos del usuario se usa la función input()
 # La función input() recibe un mensaje que se muestra al usuario

@@ -4,8 +4,16 @@
 # Python es un lenguaje de tipado dinámico y de tipado fuerte.
 ###
 
-from os import system
-if system("clear") != 0: system("cls")
+# La función "system" está obsoleta y no se recomienda utilizar.
+# from os import system
+# if system("clear") != 0: system("cls")
+
+import subprocess
+import os
+
+consola = 'cls' if os.name == 'nt' else 'clear'
+subprocess.call(consola, shell=True)
+
 
 # Para asignar una variable solo hace falta poner el nombre de la variable y asignarle un valor
 my_name = "midudev"
@@ -68,6 +76,8 @@ MI_CONSTANTE = 3.14 # UPPER_CASE -> constantes
 is_user_logged_in: bool = True # Indica que la variable es un booleano
 print(is_user_logged_in)
 
-name: str = "midudev" # Indica que la variable es una cadena de texto
+name_bool: str = "midudev" # Indica que la variable es una cadena de texto
 print(name)
 
+name_bool = 32 # Error: no se puede asignar un número entero a una cadena de texto
+print(name_bool)

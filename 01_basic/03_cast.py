@@ -3,8 +3,16 @@
 # Transformar un tipo de un valor a otro
 ###
 
-from os import system
-if system("clear") != 0: system("cls")
+# La función "system" está obsoleta y no se recomienda utilizar.
+# from os import system
+# if system("clear") != 0: system("cls")
+
+import subprocess
+import os
+
+consola = 'cls' if os.name == 'nt' else 'clear'
+subprocess.call(consola, shell=True)
+
 
 print("Conversión de tipos")
 
@@ -32,6 +40,7 @@ print(bool("False"))  # Una cadena con texto, aunque sea "False", es True. Resul
 
 # Redondear un número decimal
 print(round(2.51))  # Redondea 2.51 al entero más cercano. Resultado: 3
+print(round(2.50))  # Redondea 2.50 al entero más cercano. Resultado: 2
 
 # Este genera un error y se comenta para evitar conflicto en la ejecución
 # print(int("Hola mundo"))  # ❌ Esto generaría un ValueError porque "Hola mundo" no es un número

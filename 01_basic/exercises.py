@@ -3,8 +3,15 @@
 # Ejercicios para practicar los conceptos aprendidos en las lecciones.
 ###
 
-from os import system
-if system("clear") != 0: system("cls")
+# La función "system" está obsoleta y no se recomienda utilizar.
+# from os import system
+# if system("clear") != 0: system("cls")
+
+import subprocess
+import os
+
+consola = 'cls' if os.name == 'nt' else 'clear'
+subprocess.call(consola, shell=True)
 
 print("\nEjercicio 1: Imprimir mensajes")
 print("Escribe un programa que imprima tu nombre y tu ciudad en líneas separadas.")

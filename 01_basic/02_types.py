@@ -4,8 +4,15 @@
 # int, float, complex, str, bool, NoneType, list, tuple, dict, range, set...
 ###
 
-from os import system
-if system("clear") != 0: system("cls")
+# La función "system" está obsoleta y no se recomienda utilizar.
+# from os import system
+# if system("clear") != 0: system("cls")
+
+import subprocess
+import os
+
+consola = 'cls' if os.name == 'nt' else 'clear'
+subprocess.call(consola, shell=True)
 
 """
 El comando `type()` devuelve el tipo de un objeto en Python
@@ -39,3 +46,31 @@ print(type(1 < 2))  # Comparación que devuelve un booleano (True)
 
 print("NoneType:")  # Representa la ausencia de valor
 print(type(None))  # `None` es un tipo especial en Python que representa "sin valor" o "nulo"
+
+print("tuple:") # Tuplas son secuencias de elementos ordenados no modificables
+coordenadas = (3.518, -76.516)
+print(type(coordenadas))
+# coordenadas[0] = 10  # Error: no se puede modificar una tupla
+
+print("list:")  # Listas son secuencias de elementos ordenados y modificables
+lista = [1, 2, 3, 4, 5]
+print(type(lista))
+lista[0] = 10  # Se puede modificar una lista
+
+print("dict:")  # Diccionarios son secuencias de pares clave-valor
+diccionario = {
+    "nombre": "Juan",
+    "edad": 25,
+    "ciudad": "México"
+    }
+print(type(diccionario))
+diccionario["nombre"] = "Ana"  # Se puede modificar un diccionario
+
+print("range:")  # Rangos son secuencias de números enteros
+for i in range(1, 6):
+    print(i)
+
+print("set:")  # Conjuntos son secuencias de elementos no permite duplicados
+set1 = {1, 2, 3, 4, 5, 5}
+print(set1) # ❌ No permite hacer busqueda por posición set1[0]
+print(type(set1))
