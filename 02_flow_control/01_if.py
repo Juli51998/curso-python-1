@@ -3,8 +3,15 @@
 # Permiten ejecutar bloques de código solo si se cumplen ciertas condiciones.
 ###
 
-from os import system
-if system("clear") != 0: system("cls")
+# La función "system" está obsoleta y no se recomienda utilizar.
+# from os import system
+# if system("clear") != 0: system("cls")
+
+import subprocess
+import os
+
+consola = 'cls' if os.name == 'nt' else 'clear'
+subprocess.call(consola, shell=True)
 
 print("\n Sentencia simple condicional")
 # Podemos usar la palabra clave "if" para ejecutar un bloque de código
@@ -139,15 +146,31 @@ print(mensaje)
 # Ejercicio 1: Determinar el mayor de dos números
 # Pide al usuario que introduzca dos números y muestra un mensaje
 # indicando cuál es mayor o si son iguales
+n1 = int(input("Introduce el primer número: "))
+n2 = int(input("Introduce el segundo número: "))
+
+print(f"Entre el numero {n1} y el numero {n2} el mayor es", max(n1, n2), "y son iguales" if n1 == n2 else "y no son iguales")
 
 # Ejercicio 2: Calculadora simple
 # Pide al usuario dos números y una operación (+, -, *, /)
 # Realiza la operación y muestra el resultado (maneja la división entre zero)
+num1 = int(input("Introduce el primer numero: "))
+num2 = int(input("Introduce el segundo numero: "))
+operacion = input("Introduce la operación (+, -, *, /): ")
+
+if operacion == "/" and num2 == 0:
+  resultado = "Indefinido"
+else:
+  resultado = eval(f"{num1} {operacion} {num2}")
+print(f"El resultado de {num1} {operacion} {num2} es {resultado}")
+
 
 # Ejercicio 3: Año bisiesto
 # Pide al usuario que introduzca un año y determina si es bisiesto.
 # Un año es bisiesto si es divisible por 4, excepto si es divisible por 100 pero no por 400.
-
+year = int(input("Introduce un año: "))
+print("Es bisiesto" if year % 4 == 0 and (year % 100 != 0 or year % 400 == 0) else "No es bisiesto")
+ 
 # Ejercicio 4: Categorizar edades
 # Pide al usuario que introduzca una edad y la clasifique en:
 # - Bebé (0-2 años)
@@ -155,3 +178,20 @@ print(mensaje)
 # - Adolescente (13-17 años)
 # - Adulto (18-64 años)
 # - Adulto mayor (65 años o más)
+cases = [
+    (0, 2, "Bebé"),
+    (3, 12, "Niño"),
+    (13, 17, "Adolescente"),
+    (18, 64, "Adulto"),
+    (65, 200, "Adulto mayor")
+]
+
+edad = int(input("Introduce tu edad: "))
+
+for inicio, limite, mensaje in cases:
+    if inicio <=edad <= limite:
+        print("Usted es un ", mensaje)
+        break
+    elif edad > 200:
+        print("Edad no valida, por favor introduce un número entre 0 y 200.")
+        break

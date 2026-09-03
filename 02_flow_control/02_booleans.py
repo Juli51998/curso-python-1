@@ -3,9 +3,11 @@
 # Valores lógicos: True (verdadero) y False (falso).
 # Fundamentales para el control de flujo y la lógica en programación.
 ###
+import subprocess
+import os
 
-from os import system
-if system("clear") != 0: system("cls")
+consola = 'cls' if os.name == 'nt' else 'clear'
+subprocess.call(consola, shell=True)
 
 # Los booleanos representan valores de verdad: True o False.
 print("\nValores booleanos básicos:")
